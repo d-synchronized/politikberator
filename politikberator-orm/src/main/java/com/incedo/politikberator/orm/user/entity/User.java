@@ -1,4 +1,4 @@
-package com.incedo.politikberator.user.entity;
+package com.incedo.politikberator.orm.user.entity;
 
 import java.util.Date;
 import java.util.List;

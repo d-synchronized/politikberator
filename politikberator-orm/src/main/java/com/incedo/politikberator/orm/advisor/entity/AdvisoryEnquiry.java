@@ -1,7 +1,7 @@
 package com.incedo.politikberator.orm.advisor.entity;
 
 import com.incedo.politikberator.orm.entity.BaseEntity;
-import com.incedo.politikberator.user.entity.User;
+import com.incedo.politikberator.orm.user.entity.User;
 
 public class AdvisoryEnquiry extends BaseEntity{
 	
