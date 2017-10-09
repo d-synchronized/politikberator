@@ -39,6 +39,8 @@
 		<module>politikberator-advisor-service</module>
 		<module>politikberator-authentication-service</module>
 		<module>politikberator-advisor-db-service</module>
+		<module>politikberator-policy-service</module>
+		<module>politikberator-policy-db-service</module>
 	</modules>
 
 	<repositories>
