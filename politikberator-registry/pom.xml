@@ -11,7 +11,7 @@
   <dependencies>
 		<dependency>
 			<groupId>com.incedo</groupId>
-			<artifactId>politikberator-coomon</artifactId>
+			<artifactId>politikberator-common</artifactId>
 		</dependency>
 
 		<dependency>
