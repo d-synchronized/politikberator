@@ -1,0 +1,199 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.incedo</groupId>
+	<artifactId>politikberator</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>POLICY ADVISOR</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+
+		<swagger.version>2.6.1</swagger.version>
+		<spring.boot.version>1.5.7.RELEASE</spring.boot.version>
+		<spring.cloud.eureka.version>1.3.5.RELEASE</spring.cloud.eureka.version>
+
+		<docker.maven.plugin>1.3.4</docker.maven.plugin>
+
+		<!-- Docker image prefixes -->
+		<docker.image.prefix>dishantanand</docker.image.prefix>
+		<!-- Docker image prefixes -->
+
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+		<sonar.language>java</sonar.language>
+	</properties>
+
+	<modules>
+	<module>politikberator-common</module>
+	<module>politikberator-orm</module>
+	<module>politikberator-api-gateway</module>
+	<module>politikberator-registry</module>
+	<module>politikberator-suggestor</module>
+	<module>politikberator-advisor-service</module>
+	<module>politikberator-authentication-service</module>
+	<module>politikberator-advisor-db-service</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-netflix</artifactId>
+				<version>${spring.cloud.eureka.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring.boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${docker.maven.plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<compilerVersion>${java.version}</compilerVersion>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.6.201602180812</version>
+					<configuration>
+						<excludes>
+							<exclude>*</exclude>
+						</excludes>
+					</configuration>
+					<executions>
+						<execution>
+							<id>default-prepare-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>default-instrument</id>
+							<goals>
+								<goal>instrument</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>default-restore-instrumented-classes</id>
+							<goals>
+								<goal>restore-instrumented-classes</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>default-report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<contributors>
+		<contributor>
+			<name>Dishant Anand</name>
+			<email>dishant.anand@incedoinc.com</email>
+			<organization>INCEDO Technology Limited (IndiaBulls)</organization>
+			<roles>
+				<role>JBPM Architect</role>
+				<role>Senior Software Engineer</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<developers>
+		<developer>
+			<name>Dishant Anand</name>
+			<email>dishant.anand@incedoinc.com</email>
+			<organization>INCEDO Technology Limited (IndiaBulls)</organization>
+			<roles>
+				<role>JBPM Architect</role>
+				<role>Senior Software Engineer</role>
+			</roles>
+		</developer>
+	</developers>
+</project>
