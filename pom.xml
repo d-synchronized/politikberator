@@ -31,14 +31,14 @@
 	</properties>
 
 	<modules>
-	<module>politikberator-common</module>
-	<module>politikberator-orm</module>
-	<module>politikberator-api-gateway</module>
-	<module>politikberator-registry</module>
-	<module>politikberator-suggestor</module>
-	<module>politikberator-advisor-service</module>
-	<module>politikberator-authentication-service</module>
-	<module>politikberator-advisor-db-service</module>
+		<module>politikberator-common</module>
+		<module>politikberator-orm</module>
+		<module>politikberator-api-gateway</module>
+		<module>politikberator-registry</module>
+		<module>politikberator-suggestor</module>
+		<module>politikberator-advisor-service</module>
+		<module>politikberator-authentication-service</module>
+		<module>politikberator-advisor-db-service</module>
 	</modules>
 
 	<repositories>
@@ -57,6 +57,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.incedo</groupId>
+				<artifactId>politikberator-coomon</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-netflix</artifactId>
