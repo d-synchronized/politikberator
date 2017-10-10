@@ -1,17 +1,37 @@
 package com.incedo.politikberator.orm.entity;
 
-public class ContactDetail {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="contact_details")
+public class ContactDetail implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long contactDetailId;
 	
+	@Column
 	private String telephone;
 	
+	@Column
 	private String mobile;
 	
+	@Column
 	private String fax;
 	
+	@Column
 	private String primaryEmailAddress;
 	
+	@Column
 	private String secondaryEmailAddress;
 
 	public Long getContactDetailId() {
