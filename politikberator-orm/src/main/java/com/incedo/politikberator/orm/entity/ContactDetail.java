@@ -1,21 +1,21 @@
 package com.incedo.politikberator.orm.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="contact_details")
-public class ContactDetail implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+@Table(name="contact_detail", 
+       schema = "politikberator",
+       indexes = @Index(columnList = "primary_email",name = "contact_detail_primary_email_idx"))
+public class ContactDetail{
 	
 	@Id
+	@Column(name = "contact_detail_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long contactDetailId;
 	
@@ -28,10 +28,10 @@ public class ContactDetail implements Serializable{
 	@Column
 	private String fax;
 	
-	@Column
+	@Column(name = "primary_email",nullable = false,unique = true)
 	private String primaryEmailAddress;
 	
-	@Column
+	@Column(name = "secondary_email")
 	private String secondaryEmailAddress;
 
 	public Long getContactDetailId() {

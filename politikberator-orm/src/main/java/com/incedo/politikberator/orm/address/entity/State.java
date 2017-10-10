@@ -1,11 +1,28 @@
 package com.incedo.politikberator.orm.address.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "state",
+       schema = "politikberator",
+       indexes = @Index(columnList = "lookup_id" , name = "state_lookup_id_idx"))
 public class State {
 
+	@Id
+	@Column(name = "state_id	")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stateId;
 
+	@Column(name = "lookup_id",nullable = false)
 	private Long lookupId;
 
+	@Column(name = "name",nullable = false)
 	private String name;
 
 	public Long getStateId() {

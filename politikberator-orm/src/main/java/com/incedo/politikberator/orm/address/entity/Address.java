@@ -1,21 +1,46 @@
 package com.incedo.politikberator.orm.address.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "address",schema = "politikberator")
 public class Address {
 
+	@Id
+	@Column(name = "address_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long addressId;
 
+	@Column(name = "house_number")
 	private String houseNumber;
 
+	@Column(name = "house_name")
 	private String houseName;
 
+	@Column(name = "street")
 	private String street;
 
+	@Column(name = "locality")
 	private String locality;
 
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "city_id",referencedColumnName = "lookup_id")
 	private City city;
 
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "state_id",referencedColumnName = "lookup_id")
 	private State state;
 
+	@Column(name = "zipcode")
 	private String zipcode;
 
 	public Long getAddressId() {

@@ -2,18 +2,35 @@ package com.incedo.politikberator.orm.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "occupation",schema = "politikberator")
 public class Occupation {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "occupation_id")
 	private Long occupationId;
 
+	@Column(name = "organization")
 	private String organization;
 
+	@Column(name = "salary")
 	private Double salary;
 
+	@Column(name = "from_date")
 	private Date fromDate;
 
+	@Column(name = "to_date")
 	private Date toDate;
 
+	@Column(name = "is_permanent")
 	private boolean permanent;
 
 	public Long getOccupationId() {
