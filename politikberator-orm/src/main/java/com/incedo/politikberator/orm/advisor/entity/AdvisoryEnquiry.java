@@ -1,11 +1,14 @@
 package com.incedo.politikberator.orm.advisor.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import com.incedo.politikberator.orm.entity.BaseEntity;
@@ -54,7 +57,7 @@ public class AdvisoryEnquiry extends BaseEntity{
 	public void setCoverAmount(Double coverAmount) {
 		this.coverAmount = coverAmount;
 	}
-
+	
 	public String getEnquiryNumber() {
 		return enquiryNumber;
 	}
@@ -62,5 +65,13 @@ public class AdvisoryEnquiry extends BaseEntity{
 	public void setEnquiryNumber(String enquiryNumber) {
 		this.enquiryNumber = enquiryNumber;
 	}
+	
+	@PrePersist
+	void generateEnquiryNumber()
+	{
+		if(this.enquiryNumber==null)
+		this.enquiryNumber=UUID.randomUUID().toString();
+	}
+	
 
 }
