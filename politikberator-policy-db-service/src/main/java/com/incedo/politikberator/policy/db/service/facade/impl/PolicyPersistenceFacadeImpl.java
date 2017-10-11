@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.incedo.politikberator.common.dto.Policy;
 import com.incedo.politikberator.common.dto.Product;
+import com.incedo.politikberator.policy.db.service.data.repository.PolicyRepository;
 import com.incedo.politikberator.policy.db.service.facade.PolicyPersistenceFacade;
-import com.incedo.politikberator.policy.db.service.repository.PolicyRepository;
 
 @Service
 public class PolicyPersistenceFacadeImpl implements PolicyPersistenceFacade {
