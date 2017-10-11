@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.incedo.politikberator.policy.db.service.repository.*")
+@EnableJpaRepositories(basePackages = "com.incedo.politikberator.policy.db.service.data.repository.*")
 @EntityScan(basePackages = "com.incedo.politikberator.orm.*")
 public class PolicyPersistenceApplication {
 

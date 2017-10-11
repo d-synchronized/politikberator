@@ -1,4 +1,4 @@
-package com.incedo.politikberator.policy.db.service.repository;
+package com.incedo.politikberator.policy.db.service.data.repository;
 
 import java.io.Serializable;
 
