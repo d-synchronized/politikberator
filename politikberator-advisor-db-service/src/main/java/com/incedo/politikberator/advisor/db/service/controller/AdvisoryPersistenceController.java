@@ -26,7 +26,7 @@ public class AdvisoryPersistenceController {
 	}
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, path = "/enquiry/{enquiryNumber}")
+	@RequestMapping(method = RequestMethod.GET, path = "/enquiry/{enquiryNumber}",produces="application/json")
 	public AdvisoryEnquiry fetchUserEnquiry(
 			@PathVariable(name = "enquiryNumber", required = true) final String enquiryNumber) {
 		final AdvisoryEnquiry advisoryEnquiry = advisoryPersistenceFacade.fetchAdvisoryEnquiry(enquiryNumber);

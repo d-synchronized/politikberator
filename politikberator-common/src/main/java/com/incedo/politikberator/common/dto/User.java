@@ -27,7 +27,7 @@ public class User extends BaseDto {
 
 	private boolean smoker;
 
-	private List<AdvisoryEnquiry> advisoryEnquiries;
+	/*private List<AdvisoryEnquiry> advisoryEnquiries;*/
 
 	public Long getUserId() {
 		return userId;
@@ -101,12 +101,12 @@ public class User extends BaseDto {
 		this.smoker = smoker;
 	}
 
-	public List<AdvisoryEnquiry> getAdvisoryEnquiries() {
+	/*public List<AdvisoryEnquiry> getAdvisoryEnquiries() {
 		return advisoryEnquiries;
 	}
 
 	public void setAdvisoryEnquiries(List<AdvisoryEnquiry> advisoryEnquiries) {
 		this.advisoryEnquiries = advisoryEnquiries;
-	}
+	}*/
 
 }

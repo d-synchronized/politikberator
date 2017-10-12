@@ -1,6 +1,5 @@
 package com.incedo.politikberator.orm.address.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,11 +31,11 @@ public class Address {
 	@Column(name = "locality")
 	private String locality;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "city_id",referencedColumnName = "lookup_id")
 	private City city;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "state_id",referencedColumnName = "lookup_id")
 	private State state;
 

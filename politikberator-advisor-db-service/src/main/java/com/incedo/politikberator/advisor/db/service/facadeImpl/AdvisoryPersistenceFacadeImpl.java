@@ -2,11 +2,12 @@ package com.incedo.politikberator.advisor.db.service.facadeImpl;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.incedo.politikberator.advisor.db.service.data.repository.AdvisoryPersistenceRepository;
 import com.incedo.politikberator.advisor.db.service.facade.AdvisoryPersistenceFacade;
 import com.incedo.politikberator.common.dto.AdvisoryEnquiry;
-
+@Service
 public class AdvisoryPersistenceFacadeImpl implements AdvisoryPersistenceFacade{
 
 	@Autowired

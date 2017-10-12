@@ -1,5 +1,7 @@
 package com.incedo.politikberator.orm.address.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,13 @@ import javax.persistence.Table;
 @Table(name = "city",
        schema = "politikberator",
        indexes = @Index(columnList = "lookup_id" , name = "city_lookup_id_idx"))
-public class City {
+public class City implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "city_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,8 +2,11 @@ package com.incedo.politikberator.orm.advisor.entity;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -21,13 +24,14 @@ import com.incedo.politikberator.orm.user.entity.User;
 public class AdvisoryEnquiry extends BaseEntity{
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "advisory_enquiry_id")
 	private Long advisoryEnquiryId;
 	
 	@Column(name = "enquiry_number",nullable = false,unique = true)
 	private String enquiryNumber;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false,cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id", nullable=false, updatable=false)
 	private User user;
 	
