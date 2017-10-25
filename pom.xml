@@ -22,10 +22,9 @@
 		<liquibase.version>3.5.3</liquibase.version>
 
 		<docker.maven.plugin>1.3.4</docker.maven.plugin>
-
-		<!-- Docker image prefixes -->
 		<docker.image.prefix>dishantanand</docker.image.prefix>
-		<!-- Docker image prefixes -->
+
+		<drools.version>7.3.0.Final</drools.version>
 
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.tests>src/test/java</sonar.tests>
@@ -34,6 +33,9 @@
 		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
 		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
 		<sonar.language>java</sonar.language>
+
+		<junit.version>4.12</junit.version>
+		<powermock.version>1.7.1</powermock.version>
 	</properties>
 
 	<modules>
@@ -48,6 +50,7 @@
 		<module>politikberator-policy-service</module>
 		<module>politikberator-policy-db-service</module>
 		<module>politikberator-user-db-service</module>
+		<module>politikberator-rule-engine</module>
 	</modules>
 
 	<repositories>
@@ -99,6 +102,20 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-bom</artifactId>
+				<version>${drools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-spring</artifactId>
+				<version>5.6.0.Final</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
 				<version>${spring.boot.version}</version>
@@ -144,6 +161,29 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
