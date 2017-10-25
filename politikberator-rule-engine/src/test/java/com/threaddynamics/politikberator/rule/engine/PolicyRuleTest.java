@@ -76,12 +76,15 @@ public class PolicyRuleTest {
 	@SuppressWarnings("unchecked")
 	public void testRuleForAgeLessThen18Years(){
 		PowerMockito.mockStatic(AgeCalculator.class);
-		when(AgeCalculator.fetchDate(2000, 07, 13, null)).thenReturn(Date.from(LocalDate.of(2000, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.fetchDate(2000, 07, 13, null))
+		   .thenReturn(Date.from(LocalDate.of(2000, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(2000, 07, 13, null)))
+		   .thenReturn(17);
 		
 		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
 		final Date dob = AgeCalculator.fetchDate(2000, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
-		policyPremiumRequest.setSmoker(true);
+		policyPremiumRequest.setSmoker(false);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBelow18" , "policyPremiumRequest");
 		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
@@ -94,7 +97,117 @@ public class PolicyRuleTest {
 	
 	@Test
 	public void testRuleForAgeLessThen18YearsAndSmoker(){
+		PowerMockito.mockStatic(AgeCalculator.class);
+		when(AgeCalculator.fetchDate(2000, 07, 13, null))
+		     .thenReturn(Date.from(LocalDate.of(2000, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(2000, 07, 13, null)))
+		   .thenReturn(17);
 		
+		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final Date dob = AgeCalculator.fetchDate(2000, 07, 13, null);
+		policyPremiumRequest.setDateOfBirth(dob);
+		policyPremiumRequest.setSmoker(true);
+		
+		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBelow18IsSmoker" , "policyPremiumRequest");
+		@SuppressWarnings("unchecked")
+		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
+			Assert.fail("testRuleForAgeLessThen18YearsAndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
+		}
+		Assert.assertFalse("testRuleForAgeLessThen18YearsAndSmoker has been successfully validated", policyPremiumRequests.get(0).isEligibleForPolicy());
+
+	}
+	
+	@Test
+	public void testRuleForAgeBetween18And40Years(){
+		PowerMockito.mockStatic(AgeCalculator.class);
+		when(AgeCalculator.fetchDate(1991, 07, 13, null))
+		    .thenReturn(Date.from(LocalDate.of(1991, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1991, 07, 13, null)))
+		   .thenReturn(27);
+		
+		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final Date dob = AgeCalculator.fetchDate(1991, 07, 13, null);
+		policyPremiumRequest.setDateOfBirth(dob);
+		policyPremiumRequest.setSmoker(true);
+		
+		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBetween18And40" , "policyPremiumRequest");
+		@SuppressWarnings("unchecked")
+		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
+			Assert.fail("testRuleForAgeBetween18And40Years failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
+		}
+		Assert.assertTrue("testRuleForAgeBetween18And40Years has been successfully validated", policyPremiumRequests.get(0).isEligibleForPolicy());
+
+	}
+	
+	@Test
+	public void testRuleForAgeBetween18And40YearsAndSmoker(){
+		PowerMockito.mockStatic(AgeCalculator.class);
+		when(AgeCalculator.fetchDate(1991, 07, 13, null))
+		   .thenReturn(Date.from(LocalDate.of(1991, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1991, 07, 13, null)))
+		   .thenReturn(27);
+		
+		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final Date dob = AgeCalculator.fetchDate(1991, 07, 13, null);
+		policyPremiumRequest.setDateOfBirth(dob);
+		policyPremiumRequest.setSmoker(true);
+		
+		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBetween18And40IsSmoker" , "policyPremiumRequest");
+		@SuppressWarnings("unchecked")
+		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
+			Assert.fail("testRuleForAgeBetween18And40YearsAndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
+		}
+		Assert.assertTrue("testRuleForAgeBetween18And40YearsAndSmoker has been successfully validated", policyPremiumRequests.get(0).isEligibleForPolicy());
+
+	}
+	
+	@Test
+	public void testRuleForAgeAbove60Years(){
+		PowerMockito.mockStatic(AgeCalculator.class);
+		when(AgeCalculator.fetchDate(1940, 07, 13, null))
+		    .thenReturn(Date.from(LocalDate.of(1940, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1940, 07, 13, null)))
+		   .thenReturn(61);
+		
+		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final Date dob = AgeCalculator.fetchDate(1940, 07, 13, null);
+		policyPremiumRequest.setDateOfBirth(dob);
+		policyPremiumRequest.setSmoker(true);
+		
+		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageAbove60" , "policyPremiumRequest");
+		@SuppressWarnings("unchecked")
+		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
+			Assert.fail("testRuleForAgeAbove60Years failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
+		}
+		Assert.assertTrue("testRuleForAgeAbove60Years has been successfully validated", policyPremiumRequests.get(0).isEligibleForPolicy());
+
+	}
+	
+	@Test
+	public void testRuleForAgeAbove60AndSmoker(){
+		PowerMockito.mockStatic(AgeCalculator.class);
+		when(AgeCalculator.fetchDate(1940, 07, 13, null))
+		   .thenReturn(Date.from(LocalDate.of(1991, 07, 13).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1940, 07, 13, null)))
+		   .thenReturn(61);
+		
+		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final Date dob = AgeCalculator.fetchDate(1940, 07, 13, null);
+		policyPremiumRequest.setDateOfBirth(dob);
+		policyPremiumRequest.setSmoker(true);
+		
+		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageAbove60IsSmoker" , "policyPremiumRequest");
+		@SuppressWarnings("unchecked")
+		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
+			Assert.fail("testRuleForAgeAbove60AndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
+		}
+		Assert.assertFalse("testRuleForAgeAbove60AndSmoker has been successfully validated", policyPremiumRequests.get(0).isEligibleForPolicy());
+
 	}
 
 }

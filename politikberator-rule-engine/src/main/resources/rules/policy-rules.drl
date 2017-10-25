@@ -73,6 +73,7 @@ rule "ageBetween40And80IsSmoker" extends "ageBetween40And80"
 		$policyPremiumRequest.setPremium(23000.00);
 		$policyPremiumRequest.setAnnualPremium(23000.00);
 		$policyPremiumRequest.setPolicyPaymentFrequency(PolicyPaymentFrequency.YEARLY);
+		$policyPremiumRequest.setEligibleForPolicy(true);
 end
 
 rule "ageAbove60" extends "BASE_RULE"
