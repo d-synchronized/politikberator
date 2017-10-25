@@ -11,7 +11,11 @@ public class PolicyPremiumDetail {
 	
 	private boolean smoker;
 	
+	private String policyNumber;
+	
 	private String policyName;
+	
+	private String description;
 	
 	private boolean eligibleForPolicy;
 	
@@ -116,6 +120,22 @@ public class PolicyPremiumDetail {
 
 	public void setSmoker(boolean smoker) {
 		this.smoker = smoker;
+	}
+
+	public String getPolicyNumber() {
+		return policyNumber;
+	}
+
+	public void setPolicyNumber(String policyNumber) {
+		this.policyNumber = policyNumber;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

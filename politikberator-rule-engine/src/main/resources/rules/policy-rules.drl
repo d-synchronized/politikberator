@@ -36,7 +36,9 @@ rule "ageBetween18And40" extends "BASE_RULE"
 		eval($age >= 18 && $age < 40)
 	then
 	    System.out.println("*******ageBetween18And40 RULE*********");
+	    $policyPremiumRequest.setPolicyNumber("LICCORP1234");
 	    $policyPremiumRequest.setPolicyName("Long Term Saver");
+	    $policyPremiumRequest.setDescription("LIC Corporate - GOLD Customer BEEMA");
 		$policyPremiumRequest.setEligibleForPolicy(true);
 		$policyPremiumRequest.setPremium(25000.00);
 		$policyPremiumRequest.setAnnualPremium(25000.00);
@@ -60,6 +62,8 @@ rule "ageBetween40And60" extends "BASE_RULE"
 	then
 	    System.out.println("*******ageBetween40And80 RULE*********");
 		$policyPremiumRequest.setPolicyName("Early Maturity");
+		$policyPremiumRequest.setPolicyNumber("LICCORP4567");
+	    $policyPremiumRequest.setDescription("LIC Corporate - Early Maturity BEEMA");
 		$policyPremiumRequest.setEligibleForPolicy(true);
 		$policyPremiumRequest.setPremium(20000.00);
 		$policyPremiumRequest.setAnnualPremium(20000.00);
@@ -82,8 +86,9 @@ rule "ageAbove60" extends "BASE_RULE"
 		eval($age >= 60)
 	then
 	    System.out.println("*******ageAbove60 RULE*********");
-		$policyPremiumRequest.setPolicyName("Customised Policy");
+		$policyPremiumRequest.setPolicyName("Customized Policy");
 		$policyPremiumRequest.setEligibleForPolicy(true);
+	    $policyPremiumRequest.setDescription("LIC Corporate - Customized Policy");
 		$policyPremiumRequest.setMessage("Please contact helpdesk or call on 1800-222-222 for customized plan details");
 end
 

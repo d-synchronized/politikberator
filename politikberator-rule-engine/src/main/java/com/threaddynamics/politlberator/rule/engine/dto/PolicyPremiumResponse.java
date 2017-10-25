@@ -4,8 +4,12 @@ import com.incedo.politikberator.common.constant.PaymentMode;
 import com.incedo.politikberator.common.constant.PolicyPaymentFrequency;
 
 public class PolicyPremiumResponse {
-	
+
+	private String policyNumber;
+
 	private String policyName;
+
+	private String description;
 
 	private boolean eligibleForPolicy;
 
@@ -93,6 +97,22 @@ public class PolicyPremiumResponse {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getPolicyNumber() {
+		return policyNumber;
+	}
+
+	public void setPolicyNumber(String policyNumber) {
+		this.policyNumber = policyNumber;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
