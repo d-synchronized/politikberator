@@ -50,10 +50,11 @@ rule "ageBetween18And40IsSmoker" extends "ageBetween18And40"
 	    System.out.println("*******ageBetween18And40IsSmoker RULE*********");
 		$policyPremiumRequest.setPremium(28000.00);
 		$policyPremiumRequest.setAnnualPremium(28000.00);
+		$policyPremiumRequest.setEligibleForPolicy(true);
 		$policyPremiumRequest.setPolicyPaymentFrequency(PolicyPaymentFrequency.YEARLY);
 end
 
-rule "ageBetween40And80" extends "BASE_RULE"
+rule "ageBetween40And60" extends "BASE_RULE"
 	when
 		eval($age >= 40 && $age < 60)
 	then
@@ -65,7 +66,7 @@ rule "ageBetween40And80" extends "BASE_RULE"
 		$policyPremiumRequest.setPolicyPaymentFrequency(PolicyPaymentFrequency.YEARLY);
 end
 
-rule "ageBetween40And80IsSmoker" extends "ageBetween40And80"
+rule "ageBetween40And60IsSmoker" extends "ageBetween40And60"
 	when
 		eval($smoker == true)
 	then
