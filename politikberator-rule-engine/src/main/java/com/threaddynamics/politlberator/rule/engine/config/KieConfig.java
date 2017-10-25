@@ -1,4 +1,4 @@
-package com.threaddynamics.politlberator.rule.engine.core;
+package com.threaddynamics.politlberator.rule.engine.config;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;

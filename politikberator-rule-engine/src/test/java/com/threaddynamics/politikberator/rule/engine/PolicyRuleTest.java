@@ -28,7 +28,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.threaddynamics.politikberator.rule.engine.helper.KnowledgeBaseHelper;
-import com.threaddynamics.politlberator.rule.engine.dto.PolicyPremiumRequest;
+import com.threaddynamics.politlberator.rule.engine.dto.PolicyPremiumDetail;
 import com.threaddynamics.politlberator.rule.engine.util.AgeCalculator;
 
 @RunWith(PowerMockRunner.class)
@@ -59,7 +59,7 @@ public class PolicyRuleTest {
 				
 				@Override
 				public boolean accept(Object object) {
-					if(object instanceof PolicyPremiumRequest){
+					if(object instanceof PolicyPremiumDetail){
 						return true;
 					}
 					return false;
@@ -81,13 +81,13 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(2000, 07, 13, null)))
 		   .thenReturn(17);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(2000, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(false);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBelow18" , "policyPremiumRequest");
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeLessThen18Years failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}
@@ -103,14 +103,14 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(2000, 07, 13, null)))
 		   .thenReturn(17);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(2000, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(true);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBelow18IsSmoker" , "policyPremiumRequest");
 		@SuppressWarnings("unchecked")
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeLessThen18YearsAndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}
@@ -126,14 +126,14 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1991, 07, 13, null)))
 		   .thenReturn(27);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(1991, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(true);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBetween18And40" , "policyPremiumRequest");
 		@SuppressWarnings("unchecked")
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeBetween18And40Years failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}
@@ -149,14 +149,14 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1991, 07, 13, null)))
 		   .thenReturn(27);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(1991, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(true);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageBetween18And40IsSmoker" , "policyPremiumRequest");
 		@SuppressWarnings("unchecked")
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeBetween18And40YearsAndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}
@@ -172,14 +172,14 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1940, 07, 13, null)))
 		   .thenReturn(61);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(1940, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(true);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageAbove60" , "policyPremiumRequest");
 		@SuppressWarnings("unchecked")
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeAbove60Years failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}
@@ -195,14 +195,14 @@ public class PolicyRuleTest {
 		when(AgeCalculator.calculateAge(AgeCalculator.fetchDate(1940, 07, 13, null)))
 		   .thenReturn(61);
 		
-		final PolicyPremiumRequest policyPremiumRequest = new PolicyPremiumRequest();
+		final PolicyPremiumDetail policyPremiumRequest = new PolicyPremiumDetail();
 		final Date dob = AgeCalculator.fetchDate(1940, 07, 13, null);
 		policyPremiumRequest.setDateOfBirth(dob);
 		policyPremiumRequest.setSmoker(true);
 		
 		final ExecutionResults executionResults = execute(Arrays.asList(policyPremiumRequest), "ageAbove60IsSmoker" , "policyPremiumRequest");
 		@SuppressWarnings("unchecked")
-		final List<PolicyPremiumRequest> policyPremiumRequests = (List<PolicyPremiumRequest>)executionResults.getValue("policyPremiumRequest");
+		final List<PolicyPremiumDetail> policyPremiumRequests = (List<PolicyPremiumDetail>)executionResults.getValue("policyPremiumRequest");
 		if(policyPremiumRequests.size() == 0 || policyPremiumRequests.size() > 1){
 			Assert.fail("testRuleForAgeAbove60AndSmoker failed. Invalid number of output from rule file, size - " + policyPremiumRequests.size());
 		}

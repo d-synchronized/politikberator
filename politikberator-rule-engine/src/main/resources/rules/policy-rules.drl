@@ -1,13 +1,13 @@
 package rules;
 
-import com.threaddynamics.politlberator.rule.engine.dto.PolicyPremiumRequest;
+import com.threaddynamics.politlberator.rule.engine.dto.PolicyPremiumDetail;
 import com.incedo.politikberator.common.constant.PolicyPaymentFrequency;
 
 import static com.threaddynamics.politlberator.rule.engine.util.AgeCalculator.calculateAge;
 
 rule "BASE_RULE"
     when
-       $policyPremiumRequest: PolicyPremiumRequest(
+       $policyPremiumRequest: PolicyPremiumDetail(
                                                      $dob: dateOfBirth,
                                                      $smoker: smoker
                                                   )
@@ -93,4 +93,6 @@ rule "ageAbove60IsSmoker" extends "ageAbove60"
 	then
 	    System.out.println("*******ageAbove60IsSmoker RULE*********");
 		$policyPremiumRequest.setEligibleForPolicy(false);
+		$policyPremiumRequest.setPolicyName(null);
+		$policyPremiumRequest.setMessage(null);
 end
