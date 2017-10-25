@@ -46,7 +46,7 @@ public class PolicyRuleTest {
 	}
 	
 	
-	protected ExecutionResults execute(Collection<?> objects,final String ruleName,final String filterOut){
+	private ExecutionResults execute(Collection<?> objects,final String ruleName,final String filterOut){
 		final List<Command<?>> commands = new ArrayList<>();
 //		commands.add(CommandFactory.newSetGlobal("ageCalculator", ageCalculator));
 		commands.add(CommandFactory.newInsertElements(objects));

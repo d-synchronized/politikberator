@@ -1,14 +1,14 @@
 package com.threaddynamics.politlberator.rule.engine.api.dto;
 
+import com.incedo.politikberator.common.dto.Product;
+
 public class AdvisoryResponse {
-	
+
 	private String enquiryNumber;
-	
-	private String productNumber;
-	
-	private String productName;
-	
-	private String productDescription;
+
+	private Product product;
+
+	private PolicyPremiumResponse policyPremiumResponse;
 
 	public String getEnquiryNumber() {
 		return enquiryNumber;
@@ -18,28 +18,20 @@ public class AdvisoryResponse {
 		this.enquiryNumber = enquiryNumber;
 	}
 
-	public String getProductNumber() {
-		return productNumber;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductNumber(String productNumber) {
-		this.productNumber = productNumber;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public String getProductName() {
-		return productName;
+	public PolicyPremiumResponse getPolicyPremiumResponse() {
+		return policyPremiumResponse;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
+	public void setPolicyPremiumResponse(PolicyPremiumResponse policyPremiumResponse) {
+		this.policyPremiumResponse = policyPremiumResponse;
 	}
 
 }

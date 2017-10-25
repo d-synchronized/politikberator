@@ -22,9 +22,9 @@ public class PolicyPersistenceController {
 	private PolicyPersistenceFacade policyPersistenceFacade;
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, path = "/enquiry/{enquiryNumber}")
-	public List<Policy> fetchPossiblePolicies(@PathVariable("enquiryNumber") final String enquiryNumber) {
-		final List<Policy> policies = policyPersistenceFacade.fetchPossiblePolicies(enquiryNumber);
+	@RequestMapping(method = RequestMethod.GET, path = "/policy/{policyNumber}")
+	public List<Policy> fetchPolicyDetails(@PathVariable("policyNumber") final String policyNumber) {
+		final List<Policy> policies = policyPersistenceFacade.fetchPossiblePolicies(policyNumber);
 		if (policies == null || policies.isEmpty()) {
 			return Collections.emptyList();
 		}

@@ -7,5 +7,7 @@ public interface ApiConstant {
 	public static final String API_VERSION = "/v1";
 	
 	public static final String RULE_ENGINE_CONTROLLER_BASE_PATH = "/rule-engine";
+	
+	public static final String POLICY_SERVICE_CONTROLLER_BASE_PATH = "/policy-service";
 
 }
