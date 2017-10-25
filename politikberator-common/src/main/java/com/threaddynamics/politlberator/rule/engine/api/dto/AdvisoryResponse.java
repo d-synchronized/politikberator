@@ -1,4 +1,4 @@
-package com.incedo.politikberator.advisor.service.dto;
+package com.threaddynamics.politlberator.rule.engine.api.dto;
 
 public class AdvisoryResponse {
 	
