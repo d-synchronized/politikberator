@@ -1,8 +1,5 @@
 package com.incedo.politikberator.policy.db.service.controller;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +11,11 @@ import com.incedo.politikberator.common.api.constant.ApiConstant;
 import com.incedo.politikberator.common.dto.Policy;
 import com.incedo.politikberator.policy.db.service.facade.PolicyPersistenceFacade;
 
+import io.swagger.annotations.Api;
+
+@Api("Policy Persistence Controller : Operations to manage policy details")
 @RestController
-@RequestMapping(ApiConstant.API_BASE_URI + ApiConstant.API_VERSION + "/policy")
+@RequestMapping(ApiConstant.POLICY_DB_SERVICE_CONTROLLER_BASE_PATH)
 public class PolicyPersistenceController {
 
 	@Autowired
@@ -23,12 +23,9 @@ public class PolicyPersistenceController {
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, path = "/policy/{policyNumber}")
-	public List<Policy> fetchPolicyDetails(@PathVariable("policyNumber") final String policyNumber) {
-		final List<Policy> policies = policyPersistenceFacade.fetchPossiblePolicies(policyNumber);
-		if (policies == null || policies.isEmpty()) {
-			return Collections.emptyList();
-		}
-		return policies;
+	public Policy fetchPolicyDetails(@PathVariable("policyNumber") final String policyNumber) {
+		final Policy policy =  policyPersistenceFacade.fetchPossiblePolicies(policyNumber);
+		return policy;
 	}
 
 }

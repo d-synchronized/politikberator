@@ -22,7 +22,7 @@ public class PolicyPersistenceFacadeImpl implements PolicyPersistenceFacade {
 	private PolicyRepository policyRepository;
 
 	@Override
-	public List<Policy> fetchPossiblePolicies(final String enquiryNumber) {
+	public Policy fetchPossiblePolicies(final String enquiryNumber) {
 		final Product product = new Product();
 		product.setProductId(1L);
 		product.setProductName("LIC");
@@ -34,11 +34,7 @@ public class PolicyPersistenceFacadeImpl implements PolicyPersistenceFacade {
 		policy.setDescription("LIC Corporate - GOLD Customer BEEMA");
 		policy.setPolicyId(1L);
 		policy.setProduct(product);
-
-		final List<Policy> policies = new ArrayList<>();
-		policies.add(policy);
-		product.setPolicies(policies);
-		return policies;
+		return policy;
 	}
 
 }

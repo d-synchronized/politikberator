@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: api-gateway
+    
+server:
+  port: 8079
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8032/eureka/
+  instance:
+    hostname: localhost
+    
+    
+zuul:
+  routes:
+    advisory-persistence:
+      path: /advisory-persistence/**
+      url: http://localhost:8081
+    advisory:
+      path: /advisory/**
+      url: http://localhost:8082
+    policy-db-service:
+      path: /policy-db-service/**
+      url: http://localhost:8083
+    policy-service:
+      path: /policy-service/**
+      url: http://localhost:8084
+    rule-engine:
+      path: /rule-engine/**
+      url: http://localhost:8085
+    user-db-service:
+      path: /user-db-service/**
+      url: http://localhost:8086

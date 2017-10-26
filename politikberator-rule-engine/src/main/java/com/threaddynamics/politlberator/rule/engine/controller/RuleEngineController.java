@@ -20,7 +20,7 @@ import com.threaddynamics.politlberator.rule.engine.exception.RuleEngineExceptio
 import io.swagger.annotations.Api;
 
 @RestController
-@RequestMapping(API_BASE_URI+API_VERSION+RULE_ENGINE_CONTROLLER_BASE_PATH)
+@RequestMapping(RULE_ENGINE_CONTROLLER_BASE_PATH)
 @Api(value = "Rule Engine Resource Endpoints")
 public class RuleEngineController {
 	

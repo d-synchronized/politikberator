@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
-import com.incedo.politikberator.common.dto.AdvisoryEnquiry;
+import com.incedo.politikberator.common.api.constant.ApiConstant;
 import com.incedo.politikberator.common.dto.Policy;
+import com.incedo.politikberator.common.dto.AdvisoryEnquiry;
 import com.incedo.politikberator.common.dto.User;
 import com.threaddynamics.politlberator.rule.engine.api.dto.AdvisoryResponse;
 import com.threaddynamics.politlberator.rule.engine.api.dto.PolicyPremiumRequest;
@@ -32,18 +33,19 @@ public class PolicyServiceFacadeImpl implements PolicyServiceFacade{
 		policyPremiumRequest.setSmoker(user.isSmoker());
         
 		final PolicyPremiumResponse policyPremiumResponse = fetchPolicyPremiumDetail(policyPremiumRequest);
-		final Policy policy = fetchPolicyBrief(policyPremiumResponse);
-		
 		final AdvisoryResponse advisoryResponse = new AdvisoryResponse();
-		advisoryResponse.setProduct(policy.getProduct());
 		advisoryResponse.setPolicyPremiumResponse(policyPremiumResponse);
 		advisoryResponse.setEnquiryNumber(advisoryEnquiry.getEnquiryNumber());
+        if(policyPremiumResponse.isEligibleForPolicy()){
+        	final Policy policy = fetchPolicyBrief(policyPremiumResponse);
+        	advisoryResponse.setProduct(policy.getProduct());
+		}
 		return advisoryResponse;
 	}
 
 
 	private Policy fetchPolicyBrief(final PolicyPremiumResponse policyPremiumResponse) {
-		final URI uri = new UriTemplate("http://example.com/{policyNumber}")
+		final URI uri = new UriTemplate(ApiConstant.POLICY_DB_SERVICE_BASE_URI +"/policy/{policyNumber}")
 				                                            .expand(policyPremiumResponse.getPolicyNumber());
 		final RequestEntity<Void> policyResponseEntity = RequestEntity
 				                                            .get(uri)
@@ -58,7 +60,7 @@ public class PolicyServiceFacadeImpl implements PolicyServiceFacade{
 		RequestEntity<PolicyPremiumRequest> requestEntity = null;
 		try {
 			requestEntity = RequestEntity
-					              .post(new URI("http://example.com/foo"))
+					              .post(new URI(ApiConstant.RULE_ENGINE_SERVICE_BASE_URI + "/policy/detail"))
 					              .accept(MediaType.APPLICATION_JSON).body(policyPremiumRequest);
 		} catch (URISyntaxException uriSyntaxException) {
 			

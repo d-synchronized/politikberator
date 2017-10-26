@@ -12,8 +12,6 @@ public class Product extends BaseDto {
 
 	private String productName;
 
-	private List<Policy> policies;
-
 	public Long getProductId() {
 		return productId;
 	}
@@ -36,14 +34,6 @@ public class Product extends BaseDto {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-
-	public List<Policy> getPolicies() {
-		return policies;
-	}
-
-	public void setPolicies(List<Policy> policies) {
-		this.policies = policies;
 	}
 
 }
