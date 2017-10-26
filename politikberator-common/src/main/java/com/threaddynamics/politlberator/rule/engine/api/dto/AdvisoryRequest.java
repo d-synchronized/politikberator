@@ -41,8 +41,16 @@ public class AdvisoryRequest {
 	private BloodGroupType bloodGroupType;
 
 	private boolean smoker;
+	
+	private String organization;
 
-	private Double annualIncome;
+	private Double salary;
+
+	private Date fromDate;
+
+	private Date toDate;
+
+	private boolean permanent;
 
 	public String getUserFirstName() {
 		return userFirstName;
@@ -106,14 +114,6 @@ public class AdvisoryRequest {
 
 	public void setSmoker(boolean smoker) {
 		this.smoker = smoker;
-	}
-
-	public Double getAnnualIncome() {
-		return annualIncome;
-	}
-
-	public void setAnnualIncome(Double annualIncome) {
-		this.annualIncome = annualIncome;
 	}
 
 	public String getTelephone() {
@@ -194,6 +194,46 @@ public class AdvisoryRequest {
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
+	}
+
+	public String getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(String organization) {
+		this.organization = organization;
+	}
+
+	public Double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	public boolean isPermanent() {
+		return permanent;
+	}
+
+	public void setPermanent(boolean permanent) {
+		this.permanent = permanent;
 	}
 
 }

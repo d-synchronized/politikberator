@@ -13,7 +13,7 @@ import com.incedo.politikberator.common.api.constant.ApiConstant;
 import com.incedo.politikberator.common.dto.AdvisoryEnquiry;
 
 @RestController
-@RequestMapping(ApiConstant.API_BASE_URI + ApiConstant.API_VERSION + "/advisoryPersistence")
+@RequestMapping(ApiConstant.ADVISORY_DB_CONTROLLER_BASE_PATH)
 public class AdvisoryPersistenceController {
 
 	@Autowired

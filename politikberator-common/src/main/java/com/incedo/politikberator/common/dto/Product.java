@@ -1,7 +1,5 @@
 package com.incedo.politikberator.common.dto;
 
-import java.util.List;
-
 public class Product extends BaseDto {
 
 	private static final long serialVersionUID = -8600454341845769696L;
