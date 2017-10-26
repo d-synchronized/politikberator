@@ -17,19 +17,19 @@ zuul:
   routes:
     advisory-persistence:
       path: /advisory-persistence/**
-      url: http://localhost:8081
+      url: http://localhost:11001
     advisory:
       path: /advisory/**
-      url: http://localhost:8082
+      url: http://localhost:11002
     policy-db-service:
       path: /policy-db-service/**
-      url: http://localhost:8083
+      url: http://localhost:11003
     policy-service:
       path: /policy-service/**
-      url: http://localhost:8084
+      url: http://localhost:11004
     rule-engine:
       path: /rule-engine/**
-      url: http://localhost:8085
+      url: http://localhost:11005
     user-db-service:
       path: /user-db-service/**
-      url: http://localhost:8086
+      url: http://localhost:11006
