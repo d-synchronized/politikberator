@@ -1,4 +1,4 @@
-package com.incedo.politikberator.advisor.service.facadeiImpl;
+package com.incedo.politikberator.advisor.service.facadeImpl;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,7 +26,7 @@ import com.threaddynamics.politlberator.rule.engine.api.dto.AdvisoryResponse;
 public class AdvisoryServiceFacadeImpl implements AdvisoryServiceFacade {
 
 	@Autowired
-	RestTemplate restTemplate;
+	RestTemplate  restTemplate;
 
 	@Override
 	public AdvisoryResponse submitAdvisoryRequest(AdvisoryRequest advisory) {
