@@ -3,7 +3,7 @@ spring:
     name: policy-service
 
 server:
-  port: 8084
+  port: 11004
 
 
 eureka:
