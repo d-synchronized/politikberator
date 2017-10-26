@@ -58,7 +58,7 @@ public class User {
 	private List<Address> addresses;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "occupation_id",nullable = false)
+	@JoinColumn(name = "occupation_id",nullable = true)
 	private Occupation occupation;
 
 	@Enumerated(EnumType.STRING)
