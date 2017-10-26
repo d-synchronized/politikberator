@@ -8,4 +8,8 @@
 	</parent>
 	<artifactId>politikberator-common</artifactId>
 	<name>POLICY ADVISOR : COMMON</name>
+	
+	<properties>
+		<sonar.skip>true</sonar.skip>
+	</properties>
 </project>
