@@ -30,6 +30,15 @@ public class AdvisoryServiceFacadeImpl implements AdvisoryServiceFacade {
 
 	@Override
 	public AdvisoryResponse submitAdvisoryRequest(AdvisoryRequest advisory) {
+		AdvisoryEnquiry advisoryEnquiryRequest = prepareAdvisoryEnquiry(advisory);
+		
+		AdvisoryEnquiry advisoryEnquiryResponse = saveAdvisory(advisoryEnquiryRequest);
+
+		AdvisoryResponse advisoryResponse = getPolicy(advisoryEnquiryResponse);
+		return advisoryResponse;
+	}
+
+	private AdvisoryEnquiry prepareAdvisoryEnquiry(AdvisoryRequest advisory) {
 		Address address = new Address();
 		List<Address> addList = new ArrayList<Address>();
 		addList.add(address);
@@ -63,7 +72,10 @@ public class AdvisoryServiceFacadeImpl implements AdvisoryServiceFacade {
 		AdvisoryEnquiry advisoryEnquiryRequest = new AdvisoryEnquiry();
 		advisoryEnquiryRequest.setUser(user);
 		advisoryEnquiryRequest.setCoverAmount(advisory.getCoverAmount());
-		
+		return advisoryEnquiryRequest;
+	}
+
+	private AdvisoryEnquiry saveAdvisory(AdvisoryEnquiry advisoryEnquiryRequest) {
 		RequestEntity<AdvisoryEnquiry> requestEntity;
 		AdvisoryEnquiry advisoryEnquiryResponse=null;
 		try {
@@ -74,8 +86,10 @@ public class AdvisoryServiceFacadeImpl implements AdvisoryServiceFacade {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
+		return advisoryEnquiryResponse;
+	}
 
-		
+	private AdvisoryResponse getPolicy(AdvisoryEnquiry advisoryEnquiryResponse) {
 		RequestEntity<AdvisoryEnquiry> policyRequestEntity;
 		AdvisoryResponse advisoryResponse = null;
 		
